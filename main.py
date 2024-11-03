@@ -11,6 +11,8 @@ bank.add_user(user2)
 
 user2.deposit(bank,500)
 user2.withdraw(bank,50)
-
+user2.take_loan(bank,5000)
+user2.check_transaction_history()
+""" 
 bank.check_total_balance()
-bank.user_list()
+bank.user_list() """
