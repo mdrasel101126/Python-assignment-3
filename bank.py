@@ -8,6 +8,7 @@ class Bank:
         self.users=[]
         self.admins=[]
         self.is_loan_feature_on=True
+        self.is_bankrupt=False
 
     def add_user(self,user):
         self.users.append(user)
@@ -20,8 +21,13 @@ class Bank:
                 print(user)
                 print()
 
-    def delete_user(self,user):
-        pass
+    def delete_user(self,account_number):
+        user=next((user for user in self.users if user.account_number==account_number),None)
+        if user is None:
+            print("User Not Found!")
+            return
+        self.users.remove(user)
+        print("User Removed Successfully!")
 
     def check_total_balance(self):
         print(f"Available Balance: {self.total_balance}")
@@ -35,12 +41,7 @@ class Bank:
     def off_loan_feature(self):
         self.is_loan_feature_on=False
 
-    def add_balance(self,amount):
-        self.total_balance+=amount
-    
-    def add_loan(self,amount):
-        self.total_loan+=amount
-        self.total_balance-=amount
-
-    def withdraw(self,amount):
-        self.total_balance-=amount
+    def on_bankrupt(self):
+        self.is_bankrupt=True
+    def off_bankrupt(self):
+        self.is_bankrupt=False
