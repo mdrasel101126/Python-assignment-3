@@ -9,18 +9,23 @@ class User:
         self.account_number="".join(name.split())+email
         self.loan_limit=2
 
-    def deposit(self,amount):
+    def deposit(self,bank,amount):
         if amount<0:
             print("Please Enter Valid Amount")
             return
         self.balance+=amount
+        bank.total_balance+=amount
         print(f"Deposit {amount} is successfull!")
     
-    def withdraw(self,amount):
+    def withdraw(self,bank,amount):
         if amount>self.balance:
             print("Withdrawal amount exceeded")
             return
+        elif amount>bank.total_balance:
+            print("The Bank is Bankrupt!!!")
+            return
         self.balance-=amount
+        bank.total_balance-=amount
         print(f"Withdrawal {amount} is successfull!")
     
     def check_balance(self):
@@ -37,5 +42,5 @@ class User:
 
     
     def __repr__(self):
-        return f" Name: {self.name}\n Email: {self.email}\n Address: {self.address}\n Account Type: {self.account_type}\n Balance:{self.balance}\n Account Number: {self.account_number}"
+        return f"Name: {self.name}\nEmail: {self.email}\nAddress: {self.address}\nAccount Type: {self.account_type}\nBalance:{self.balance}\nAccount Number: {self.account_number}"
     
