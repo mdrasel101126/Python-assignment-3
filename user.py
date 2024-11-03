@@ -37,10 +37,5 @@ class User:
 
     
     def __repr__(self):
-        return f" Name: {self.name}\n Email: {self.email}\n Address: {self.address}\n Account Type: {self.account_type} Balance:{self.balance}\n Account Number: {self.account_number}"
+        return f" Name: {self.name}\n Email: {self.email}\n Address: {self.address}\n Account Type: {self.account_type}\n Balance:{self.balance}\n Account Number: {self.account_number}"
     
-
-
-
-ashik=User("Ashik Voja","ashik@gmail.com","Sylhet, Bangladesh","Saving")
-print(ashik)
