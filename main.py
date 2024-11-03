@@ -29,13 +29,12 @@ while True:
     print("\t1. Login as a User\n\t2. Login as an Admin\n\t3. Exit")
     option=int(input("Enter: "))
 
-    user=None
-
     if option==1:
+        user=None
         while True:
             print("Options:")
             print("\t1. Create Account\n\t2. Deposit\n\t3. Withdraw\n\t4. Check Balance\n\t5. Check Transaction History\n\t6. Take Loan\n\t7. Transfer\n\t8. Exit")
-            opt=int(input("Enter: "))
+            opt=int(input("Enter Option: "))
             if opt==1:
                 name=input("Enter Name: ")
                 email=input("Enter Email: ")
@@ -65,6 +64,44 @@ while True:
                 break
             else:
                 continue
+    elif option==2:
+        admin=None
+        while True:
+            print("Options:")
+            print("\t1. Create Account\n\t2. Delete User\n\t3. Check User List\n\t4. Check Available Balance\n\t5. Check Total Loan\n\t6. Turn On Loan Feature\n\t7. Turn Off Loan Feature\n\t8. Set Bankrupt True\n\t9. Set Bankrupt False\n\t10. Exit")
+            opt=int(input("Enter Option: "))
+            if opt == 1:
+                name=input("Enter Name: ")
+                password=input("Enter Password: ")
+                admin=Admin(name,password)
+                bank.add_admin(admin)
+                print("Admin Created Successfully")
+            elif opt == 2:
+                acc_no=input("Enter Account Number: ")
+                bank.delete_user(acc_no)
+            elif opt==3:
+                bank.user_list()
+            elif opt==4:
+                bank.check_total_balance()
+            elif opt==5:
+                bank.check_total_loan()
+            elif opt==6:
+                bank.on_loan_feature()
+            elif opt==7:
+                bank.off_loan_feature()
+            elif opt==8:
+                bank.on_bankrupt()
+            elif opt==9:
+                bank.off_bankrupt()
+            elif opt==10:
+                break
+            else:
+                continue
+    elif option==3:
+        break
+    else:
+        continue
+            
 
                 
 

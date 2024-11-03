@@ -13,6 +13,9 @@ class Bank:
     def add_user(self,user):
         self.users.append(user)
 
+    def add_admin(self,admin):
+        self.admins.append(admin)
+
     def user_list(self):
         if len(self.users)==0:
             print("No User!")
@@ -37,11 +40,15 @@ class Bank:
     
     def on_loan_feature(self):
         self.is_loan_feature_on=True
+        print("Loan Feature is Turned On!")
 
     def off_loan_feature(self):
         self.is_loan_feature_on=False
+        print("Loan Feature is Turned Off!")
 
     def on_bankrupt(self):
         self.is_bankrupt=True
+        print("The bank is Bankrupt From Now")
     def off_bankrupt(self):
         self.is_bankrupt=False
+        print("The bank is Running From Now")
