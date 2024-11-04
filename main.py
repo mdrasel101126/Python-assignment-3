@@ -116,7 +116,7 @@ while True:
                 else:
                     if admin.password==password:
                         print("-----Login Successfull!-----")
-                        print(f"-----Welcome {admin.name}----")
+                        print(f"-----Welcome {admin.name}-----")
                     else:
                         admin=None
                         print("----Incorrect Password----")
@@ -128,26 +128,51 @@ while True:
                 if admin is not None:
                     print("-----Admin Exist! Please Login-----")
                     continue
-                admin=Admin(name,password)
+                admin=Admin(name,email,password)
                 bank.add_admin(admin)
-                print("Admin Created Successfully")
+                print("----Admin Created Successfully----")
+                print(f"-----Welcome {admin.name}-----")
             elif opt == 2:
+                if admin is None:
+                    print("-----Pleaase Login or Create Account-----")
+                    continue
                 acc_no=input("Enter Account Number: ")
-                bank.delete_user(acc_no)
+                admin.delete_user(bank,acc_no)
             elif opt==3:
-                bank.user_list()
+                if admin is None:
+                    print("-----Pleaase Login or Create Account-----")
+                    continue
+                admin.user_list(bank)
             elif opt==4:
-                bank.check_total_balance()
+                if admin is None:
+                    print("-----Pleaase Login or Create Account-----")
+                    continue
+                admin.check_total_balance(bank)
             elif opt==5:
-                bank.check_total_loan()
+                if admin is None:
+                    print("-----Pleaase Login or Create Account-----")
+                    continue
+                admin.check_total_loan(bank)
             elif opt==6:
-                bank.on_loan_feature()
+                if admin is None:
+                    print("-----Pleaase Login or Create Account-----")
+                    continue
+                admin.on_loan_feature(bank)
             elif opt==7:
-                bank.off_loan_feature()
+                if admin is None:
+                    print("-----Pleaase Login or Create Account-----")
+                    continue
+                admin.off_loan_feature(bank)
             elif opt==8:
-                bank.on_bankrupt()
+                if admin is None:
+                    print("-----Pleaase Login or Create Account-----")
+                    continue
+                admin.on_bankrupt(bank)
             elif opt==9:
-                bank.off_bankrupt()
+                if admin is None:
+                    print("-----Pleaase Login or Create Account-----")
+                    continue
+                admin.off_bankrupt(bank)
             elif opt==10:
                 break
             else:
