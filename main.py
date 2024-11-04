@@ -3,28 +3,10 @@ from user import User
 from admin import Admin
 
 
-bank=Bank("Baper Bank",50000)
-""" user1=User("Ashik Voja","ashik@gmail.com","Sylhet, Bangladesh","Saving")
-bank.add_user(user1)
-user2=User("Juel Rana","juel@gmail.com","Sylhet, Bangladesh","Saving")
-bank.add_user(user2)
-
-user2.deposit(bank,500)
-user2.withdraw(bank,50)
-user2.take_loan(bank,5000)
-
-bank.user_list()
-
-user2.transfer(bank,"AshikVojaashik@gmail.com",60)
-bank.user_list()
-user2.check_transaction_history()
-
-bank.delete_user("AshikVojaashik@gmail.com")
-bank.user_list() """
-
+bank=Bank("National Fake Bank",50000)
 
 while True:
-    print("Welcome To National Fake Bank!")
+    print(f"Welcome To {bank.name}")
     print("Options")
     print("\t1. Login as a User\n\t2. Login as an Admin\n\t3. Exit")
     option=int(input("Enter: "))

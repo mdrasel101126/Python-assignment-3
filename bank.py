@@ -2,7 +2,6 @@
 class Bank:
     def __init__(self,name,initial_balance):
         self.name=name
-        self.initial_balance=initial_balance
         self.total_balance=initial_balance
         self.total_loan=0
         self.users=[]
