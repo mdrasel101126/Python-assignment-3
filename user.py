@@ -1,8 +1,9 @@
 from datetime import datetime
 class User:
-    def __init__(self,name,email,address,account_type):
+    def __init__(self,name,email,password,address,account_type):
         self.name=name
         self.email=email
+        self.password=password
         self.address=address
         self.account_type=account_type
         self.balance=0

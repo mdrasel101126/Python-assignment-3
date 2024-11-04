@@ -52,3 +52,10 @@ class Bank:
     def off_bankrupt(self):
         self.is_bankrupt=False
         print("The bank is Running From Now")
+
+    def find_user_by_email(self,email):
+        user=next((user for user in self.users if user.email==email),None)
+        return user
+    def find_admin_by_email(self,email):
+        admin=next((admin for admin in self.admins if admin.email==email),None)
+        return admin

@@ -33,30 +33,67 @@ while True:
         user=None
         while True:
             print("Options:")
-            print("\t1. Create Account\n\t2. Deposit\n\t3. Withdraw\n\t4. Check Balance\n\t5. Check Transaction History\n\t6. Take Loan\n\t7. Transfer\n\t8. Exit")
+            print("\t0. Login Account\n\t1. Create Account\n\t2. Deposit\n\t3. Withdraw\n\t4. Check Balance\n\t5. Check Transaction History\n\t6. Take Loan\n\t7. Transfer\n\t8. Exit")
             opt=int(input("Enter Option: "))
-            if opt==1:
+            if opt==0:
+                email=input("Enter Eamil: ")
+                password=input("Enter Password: ")
+                user=bank.find_user_by_email(email)
+                if user is None:
+                    print("-----Login Failed! Incorrect Email!-----")
+                else:
+                    if user.password==password:
+                        print("-----Login Successfull!-----")
+                        print(f"-----Welcome {user.name}----")
+                    else:
+                        user=None
+                        print("----Incorrect Password----")
+            elif opt==1:
                 name=input("Enter Name: ")
                 email=input("Enter Email: ")
+                password=input("Enter Password: ")
                 address=input("Enter Address: ")
                 account_type=input("Enter Account Type: ")
-                user=User(name,email,address,account_type)
+                user=bank.find_user_by_email(email)
+                if user is not None:
+                    print("-----User Exist! Please Login-----")
+                    continue
+                user=User(name,email,password,address,account_type)
                 bank.add_user(user)
                 print("----User Created Successfully----")
+                print(f"-----Welcome {user.name}-----")
             elif opt==2:
+                if user is None:
+                    print("-----Pleaase Login or Create Account-----")
+                    continue
                 amount=int(input("Enter Amount: "))
                 user.deposit(bank,amount)
             elif opt==3:
+                if user is None:
+                    print("-----Pleaase Login or Create Account-----")
+                    continue
                 amount=int(input("Enter Amount: "))
                 user.withdraw(bank,amount)
             elif opt==4:
+                if user is None:
+                    print("-----Pleaase Login or Create Account-----")
+                    continue
                 user.check_balance()
             elif opt==5:
+                if user is None:
+                    print("-----Pleaase Login or Create Account-----")
+                    continue
                 user.check_transaction_history()
             elif opt==6:
+                if user is None:
+                    print("-----Pleaase Login or Create Account-----")
+                    continue
                 amount=int(input("Enter Amount: "))
                 user.take_loan(bank,amount)
             elif opt==7:
+                if user is None:
+                    print("-----Pleaase Login or Create Account-----")
+                    continue
                 acc_no=input("Enter Receiver Account Number: ")
                 amount=int(input("Enter Amount: "))
                 user.transfer(bank,acc_no,amount)
@@ -68,11 +105,29 @@ while True:
         admin=None
         while True:
             print("Options:")
-            print("\t1. Create Account\n\t2. Delete User\n\t3. Check User List\n\t4. Check Available Balance\n\t5. Check Total Loan\n\t6. Turn On Loan Feature\n\t7. Turn Off Loan Feature\n\t8. Set Bankrupt True\n\t9. Set Bankrupt False\n\t10. Exit")
+            print("\t0. Login Account\n\t1. Create Account\n\t2. Delete User\n\t3. Check User List\n\t4. Check Available Balance\n\t5. Check Total Loan\n\t6. Turn On Loan Feature\n\t7. Turn Off Loan Feature\n\t8. Set Bankrupt True\n\t9. Set Bankrupt False\n\t10. Exit")
             opt=int(input("Enter Option: "))
-            if opt == 1:
-                name=input("Enter Name: ")
+            if opt==0:
+                email=input("Enter Eamil:")
                 password=input("Enter Password: ")
+                admin=bank.find_admin_by_email(email)
+                if admin is None:
+                    print("-----Login Failed! Incorrect Email!-----")
+                else:
+                    if admin.password==password:
+                        print("-----Login Successfull!-----")
+                        print(f"-----Welcome {admin.name}----")
+                    else:
+                        admin=None
+                        print("----Incorrect Password----")
+            elif opt == 1:
+                name=input("Enter Name: ")
+                email=input("Enter Email: ")
+                password=input("Enter Password: ")
+                admin=bank.find_admin_by_email(email)
+                if admin is not None:
+                    print("-----Admin Exist! Please Login-----")
+                    continue
                 admin=Admin(name,password)
                 bank.add_admin(admin)
                 print("Admin Created Successfully")
